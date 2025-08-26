@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fantasy HP Calculator | D&D 5e</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚔️</text></svg>">
+    <style>
+        :root {
+            --primary: #3a2c28;
+            --secondary: #5e4122;
+            --accent: #8a5c2d;
+            --gold: #c8a971;
+            --parchment: #f2e6d0;
+            --dark-parchment: #e2d0b3;
+            --ink: #3c3c3c;
+            --border: #8b5a2b;
+            --dragon-red: #8a0303;
+            --dwarf-blue: #1d3c45;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'MedievalSharp', cursive, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        @font-face {
+            font-family: 'MedievalSharp';
+            font-style: normal;
+            font-weight: 400;
+            src: url(https://fonts.gstatic.com/s/medievalsharp/v24/EvOJzAlL3oU5AQl2mP5KdgptAq96Mw.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+        
+        body {
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%233a2c28"/><path d="M0,0 L100,100 M100,0 L0,100" stroke="%235e4122" stroke-width="0.5"/></svg>');
+            color: var(--ink);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background: var(--parchment);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 0 1px var(--border), 0 0 10px rgba(139, 90, 43, 0.5);
+            position: relative;
+            overflow: hidden;
+            border: 8px solid transparent;
+            background-clip: padding-box;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f2e6d0"/><path d="M0,0 L100,100 M100,0 L0,100" stroke="%23e2d0b3" stroke-width="0.5"/></svg>');
+        }
+        
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: -1;
+            margin: -10px;
+            border-radius: 20px;
+            background: linear-gradient(45deg, var(--secondary), var(--accent), var(--gold), var(--accent), var(--secondary));
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--border);
+            position: relative;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            font-size: 3rem;
+            color: var(--dragon-red);
+            filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.3));
+        }
+        
+        h1 {
+            color: var(--dragon-red);
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 0 var(--gold), 4px 4px 0 rgba(0, 0, 0, 0.2);
+            letter-spacing: 1px;
+            font-size: 2.8rem;
+        }
+        
+        .description {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .calculator {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .calculator {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .input-section, .result-section {
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(139, 90, 43, 0.3);
+            border: 2px solid var(--border);
+            position: relative;
+        }
+        
+        .input-section::before, .result-section::before {
+            content: "";
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            border: 1px solid rgba(139, 90, 43, 0.2);
+            border-radius: 8px;
+            pointer-events: none;
+        }
+        
+        .section-title {
+            color: var(--dwarf-blue);
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.5rem;
+            text-shadow: 1px 1px 0 var(--gold);
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0 15px;
+        }
+        
+        .section-title::before, .section-title::after {
+            content: "◆";
+            color: var(--accent);
+            margin: 0 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dwarf-blue);
+            font-size: 1.1rem;
+        }
+        
+        select, input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 16px;
+            background: var(--parchment);
+            color: var(--ink);
+            transition: all 0.3s;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        select:focus, input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(138, 92, 45, 0.3);
+        }
+        
+        select {
+            appearance: none;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%238b5a2b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>');
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 16px;
+            padding-right: 40px;
+        }
+        
+        button {
+            background: linear-gradient(to bottom, var(--accent), var(--secondary));
+            color: var(--parchment);
+            border: none;
+            padding: 14px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.3s;
+            width: 100%;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            letter-spacing: 1px;
+            box-shadow: 0 4px 0 var(--secondary), 0 8px 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        
+        button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 var(--secondary), 0 10px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        button:hover::before {
+            left: 100%;
+        }
+        
+        button:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 var(--secondary), 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hp-display {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--dragon-red);
+            margin: 25px 0;
+            text-shadow: 2px 2px 0 var(--gold), 4px 4px 0 rgba(0, 0, 0, 0.2);
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        
+        .details {
+            margin-top: 20px;
+        }
+        
+        .details h3 {
+            color: var(--dwarf-blue);
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 8px;
+            text-align: center;
+            font-size: 1.3rem;
+        }
+        
+        .details p {
+            margin-bottom: 10px;
+            padding: 5px 0;
+            border-bottom: 1px dotted var(--border);
+        }
+        
+        .hit-points-breakdown {
+            background: var(--dark-parchment);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 5px solid var(--accent);
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hit-dice-summary {
+            margin-top: 20px;
+            font-style: italic;
+            text-align: center;
+            color: var(--dwarf-blue);
+            font-size: 1.1rem;
+            padding: 10px;
+            background: rgba(200, 169, 113, 0.2);
+            border-radius: 8px;
+        }
+        
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            color: var(--secondary);
+            font-size: 0.9rem;
+            padding-top: 20px;
+            border-top: 2px solid var(--border);
+            width: 100%;
+        }
+        
+        .decoration {
+            position: absolute;
+            font-size: 8rem;
+            opacity: 0.05;
+            z-index: 0;
+            color: var(--dragon-red);
+        }
+        
+        .decoration.top-left {
+            top: 20px;
+            left: 20px;
+            transform: rotate(-30deg);
+        }
+        
+        .decoration.bottom-right {
+            bottom: 20px;
+            right: 20px;
+            transform: rotate(30deg);
+        }
+        
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: help;
+        }
+        
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: var(--secondary);
+            color: var(--parchment);
+            text-align: center;
+            border-radius: 6px;
+            padding: 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.9rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="decoration top-left">⚔️</div>
+        <div class="decoration bottom-right">🛡️</div>
+        
+        <header>
+            <div class="logo">
+                <span class="logo-icon">⚔️</span>
+                <h1>Fantasy HP Calculator</h1>
+                <span class="logo-icon">🛡️</span>
+            </div>
+            <p class="description">Calculate your D&D 5e character's hit points with this mystical tool</p>
+        </header>
+        
+        <div class="calculator">
+            <div class="input-section">
+                <h2 class="section-title">Character Details</h2>
+                
+                <div class="form-group">
+                    <label for="characterClass">Class:</label>
+                    <select id="characterClass">
+                        <option value="barbarian">Barbarian</option>
+                        <option value="bard">Bard</option>
+                        <option value="cleric">Cleric</option>
+                        <option value="druid">Druid</option>
+                        <option value="fighter">Fighter</option>
+                        <option value="monk">Monk</option>
+                        <option value="paladin">Paladin</option>
+                        <option value="ranger">Ranger</option>
+                        <option value="rogue">Rogue</option>
+                        <option value="sorcerer">Sorcerer</option>
+                        <option value="warlock">Warlock</option>
+                        <option value="wizard">Wizard</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="level">Level:</label>
+                    <input type="number" id="level" min="1" max="20" value="1">
+                </div>
+                
+                <div class="form-group">
+                    <label for="conModifier">Constitution Modifier:</label>
+                    <input type="number" id="conModifier" min="-5" max="10" value="0">
+                </div>
+                
+                <div class="form-group">
+                    <label for="fixedHP">
+                        Fixed HP at 1st Level 
+                        <span class="tooltip">(?)
+                            <span class="tooltiptext">Override the default starting HP for your character</span>
+                        </span>:
+                    </label>
+                    <input type="number" id="fixedHP" min="1" placeholder="Leave empty for default">
+                </div>
+                
+                <button id="calculateBtn">Calculate HP</button>
+            </div>
+            
+            <div class="result-section">
+                <h2 class="section-title">Hit Points</h2>
+                <div class="hp-display" id="totalHP">-</div>
+                
+                <div class="details">
+                    <h3>Calculation Details</h3>
+                    <div class="hit-points-breakdown" id="breakdown">
+                        <p>Select a class and level to see the breakdown</p>
+                    </div>
+                    
+                    <div class="hit-dice-summary" id="hitDice">
+                        <p>Hit dice will be shown here</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>This calculator follows the rules from the Dungeons & Dragons 5th Edition System Reference Document (SRD).</p>
+            <p>Not affiliated with Wizards of the Coast. Created for fantasy RPG enthusiasts.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const classSelect = document.getElementById('characterClass');
+            const levelInput = document.getElementById('level');
+            const conModInput = document.getElementById('conModifier');
+            const fixedHPInput = document.getElementById('fixedHP');
+            const calculateBtn = document.getElementById('calculateBtn');
+            const totalHPSpan = document.getElementById('totalHP');
+            const breakdownDiv = document.getElementById('breakdown');
+            const hitDiceDiv = document.getElementById('hitDice');
+            
+            // Class hit dice mapping
+            const classHitDice = {
+                barbarian: 12,
+                bard: 8,
+                cleric: 8,
+                druid: 8,
+                fighter: 10,
+                monk: 8,
+                paladin: 10,
+                ranger: 10,
+                rogue: 8,
+                sorcerer: 6,
+                warlock: 8,
+                wizard: 6
+            };
+            
+            // Class emojis for flavor
+            const classEmojis = {
+                barbarian: '🪓',
+                bard: '🎵',
+                cleric: '✝️',
+                druid: '🌿',
+                fighter: '⚔️',
+                monk: '🥋',
+                paladin: '🛡️',
+                ranger: '🏹',
+                rogue: '🗡️',
+                sorcerer: '🔮',
+                warlock: '☠️',
+                wizard: '📜'
+            };
+            
+            // Calculate HP when the button is clicked
+            calculateBtn.addEventListener('click', calculateHP);
+            
+            // Also calculate when any input changes
+            classSelect.addEventListener('change', calculateHP);
+            levelInput.addEventListener('input', calculateHP);
+            conModInput.addEventListener('input', calculateHP);
+            fixedHPInput.addEventListener('input', calculateHP);
+            
+            // Calculate on page load
+            calculateHP();
+            
+            function calculateHP() {
+                const characterClass = classSelect.value;
+                const level = parseInt(levelInput.value) || 1;
+                const conMod = parseInt(conModInput.value) || 0;
+                const fixedHP = fixedHPInput.value ? parseInt(fixedHPInput.value) : null;
+                
+                // Validate inputs
+                if (level < 1) levelInput.value = 1;
+                if (level > 20) levelInput.value = 20;
+                
+                // Calculate hit points
+                const hitDiceValue = classHitDice[characterClass];
+                let totalHP = 0;
+                let breakdownHTML = '';
+                
+                if (level >= 1) {
+                    // First level calculation
+                    const firstLevelHP = fixedHP || (hitDiceValue + conMod);
+                    totalHP += firstLevelHP;
+                    
+                    breakdownHTML += `<p>1st Level ${classEmojis[characterClass]}: ${fixedHP ? fixedHP + ' (fixed)' : hitDiceValue + ' + ' + conMod} = ${firstLevelHP}</p>`;
+                    
+                    // Subsequent levels
+                    if (level > 1) {
+                        const avgRoll = Math.floor(hitDiceValue / 2) + 1 + conMod;
+                        totalHP += avgRoll * (level - 1);
+                        
+                        breakdownHTML += `<p>${level - 1} Level(s): ${level - 1} × ${Math.floor(hitDiceValue / 2) + 1} (avg) + ${conMod} = ${avgRoll * (level - 1)}</p>`;
+                    }
+                }
+                
+                // Update the UI
+                totalHPSpan.textContent = totalHP;
+                breakdownDiv.innerHTML = breakdownHTML;
+                
+                // Update hit dice info
+                hitDiceDiv.innerHTML = `<p>Hit Dice: ${level}d${hitDiceValue} ${classEmojis[characterClass]}</p>`;
+            }
+        });
+    </script>
+</body>
+</html>
