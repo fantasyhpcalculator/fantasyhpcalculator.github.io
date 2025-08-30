@@ -789,6 +789,219 @@
             border-bottom: 2px solid var(--border);
             padding-bottom: 10px;
         }
+        
+        /* FAQ Styles */
+        .faq-container {
+            margin-top: 25px;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 15px 20px;
+            background: var(--dark-parchment);
+            font-weight: 600;
+            color: var(--dwarf-blue);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+
+        .faq-question:hover {
+            background: var(--gold);
+            color: var(--primary);
+        }
+
+        .faq-toggle {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 20px;
+            max-height: 1000px;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        /* Reviews Styles */
+        .reviews-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .review {
+            background: var(--dark-parchment);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--accent);
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .reviewer {
+            font-weight: 600;
+            color: var(--dragon-red);
+        }
+
+        .review-date {
+            font-size: 0.9rem;
+            color: var(--secondary);
+        }
+
+        .review-rating {
+            color: var(--gold);
+            font-size: 1.1rem;
+        }
+
+        .review-content {
+            line-height: 1.6;
+        }
+
+        .add-review {
+            text-align: center;
+            margin-top: 40px;
+            padding: 25px;
+            background: var(--dark-parchment);
+            border-radius: 8px;
+            border: 2px dashed var(--border);
+        }
+
+        .add-review h3 {
+            color: var(--dragon-red);
+            margin-bottom: 10px;
+        }
+        
+        /* Review Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: var(--parchment);
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 3px solid var(--border);
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dragon-red);
+            background: none;
+            border: none;
+            width: auto;
+            padding: 0;
+        }
+
+        .rating-stars {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .star {
+            font-size: 2rem;
+            color: var(--gold);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .star:hover {
+            transform: scale(1.2);
+        }
+
+        .star.active {
+            color: var(--dragon-red);
+            text-shadow: 0 0 5px rgba(138, 3, 3, 0.5);
+        }
+
+        .review-form .form-field {
+            margin-bottom: 20px;
+        }
+
+        .form-submit-message {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            display: none;
+        }
+
+        .success {
+            background-color: rgba(40, 167, 69, 0.2);
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error {
+            background-color: rgba(220, 53, 69, 0.2);
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        /* Character counter for review text */
+        .char-count {
+            text-align: right;
+            font-size: 0.8rem;
+            color: var(--secondary);
+            margin-top: 5px;
+        }
+        
+        /* User review in the list */
+        .user-review {
+            animation: fadeIn 0.5s ease-in;
+            border-left: 4px solid var(--dragon-red);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
@@ -809,6 +1022,8 @@
             <ul class="nav-menu">
                 <li><a href="#calculator">Calculator</a></li>
                 <li><a href="#content">Content</a></li>
+                <li><a href="#faq">FAQs</a></li>
+                <li><a href="#reviews">Reviews</a></li>
                 <li><a href="#about">About Us</a></li>
                 <li><a href="#blog">Blog</a></li>
                 <li><a href="#privacy">Privacy Policy</a></li>
@@ -1022,186 +1237,240 @@
                 </div>
             </div>
         </div>
+        
+        <!-- FAQ Section -->
+        <div id="faq" class="content-section">
+            <h2>Frequently Asked Questions</h2>
+            <p>Find answers to common questions about D&D 5e hit points, our calculator, and character optimization.</p>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">How do you calculate hit points in D&D 5e? <span class="faq-toggle">+</span></div>
+                    <div class="faq-answer">
+                        <p>In D&D 5e, your character's hit points are determined by your class's hit die plus your Constitution modifier at 1st level. For each additional level, you either roll your hit die and add your Constitution modifier or take the fixed average (which is half your hit die maximum + 1, rounded up) plus your Constitution modifier.</p>
+                        <p>For example, a 1st-level fighter with a Constitution modifier of +2 would have 10 + 2 = 12 hit points (d10 hit die). At 2nd level, they could either roll 1d10+2 or take the average of 6 + 2 = 8 additional hit points.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">What is the hit die for each class? <span class="faq-toggle">+</span></div>
+                    <div class="faq-answer">
+                        <p>Each class in D&D 5e uses a different hit die:</p>
+                        <ul>
+                            <li>Barbarian: d12</li>
+                            <li>Fighter, Paladin, Ranger: d10</li>
+                            <li>Bard, Cleric, Druid, Monk, Rogue, Warlock: d8</li>
+                            <li>Sorcerer, Wizard: d6</li>
+                        </ul>
+                        <p>Your hit die determines not only your starting hit points but also how much you heal during short rests.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Should I roll for HP or take the average? <span class="faq-toggle">+</span></div>
+                    <div class="faq-answer">
+                        <p>This depends on your preference for risk versus consistency:</p>
+                        <ul>
+                            <li><strong>Taking the average</strong> gives you reliable hit point growth that is actually slightly better than the mathematical average (since D&D rounds up).</li>
+                            <li><strong>Rolling</strong> offers the chance for higher hit points but risks lower results.</li>
+                        </ul>
+                        <p>Many players prefer the average for important characters, while rolling can add excitement for one-shots or less critical characters. Our calculator supports both methods!</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">How does multiclassing affect hit points? <span class="faq-toggle">+</span></div>
+                    <div class="faq-answer">
+                        <p>When you multiclass, your hit points are calculated using the hit die of each class:</p>
+                        <ul>
+                            <li>At 1st level, you use the hit die of your starting class plus your Constitution modifier</li>
+                            <li>For each additional level in any class, you gain hit points based on that class's hit die</li>
+                        </ul>
+                        <p>For example, a character with 1 level in fighter (d10) and 1 level in wizard (d6) would calculate their hit points as: 1st level (d10 + CON mod) + 2nd level (d6 or average + CON mod).</p>
+                        <p>Note: Our current calculator supports single-class characters. Multiclass support may be added in future updates!</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Does Constitution affect hit points at every level? <span class="faq-toggle">+</span></div>
+                    <div class="faq-answer">
+                        <p>Yes! Your Constitution modifier is added to your hit points at every level. This means that increasing your Constitution score (through ability score improvements or magic items) retroactively increases your maximum hit points for all levels.</p>
+                        <p>For example, if you have a +2 Constitution modifier at 5th level and then increase it to +3, your maximum hit points increase by 5 (one for each level). This makes Constitution one of the most valuable abilities for nearly every character.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">What are hit dice used for besides calculating HP? <span class="faq-toggle">+</span></div>
+                    <div class="faq-answer">
+                        <p>Hit dice serve an important function during short rests:</p>
+                        <ul>
+                            <li>During a short rest (at least 1 hour), you can spend hit dice to recover hit points</li>
+                            <li>You roll spent hit dice and add your Constitution modifier to determine how many hit points you regain</li>
+                            <li>You can spend as many hit dice as you have available</li>
+                            <li>You regain half your total hit dice (rounded down) after a long rest</li>
+                        </ul>
+                        <p>This mechanic represents your character's natural resilience and ability to recover from injuries without magical healing.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Can I change my HP calculation method after character creation? <span class="faq-toggle">+</span></div>
+                    <div class="faq-answer">
+                        <p>Officially, the rules don't provide a method for changing how you calculated your hit points after character creation. However, many Dungeon Masters will allow players to recalculate their hit points using the fixed average if they've been particularly unlucky with rolls.</p>
+                        <p>If you want to change your method, discuss it with your DM. Some may allow you to use the average for all levels, while others might only allow it for future levels. Our calculator can help you see what your hit points would be with either method!</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">How do racial traits and feats affect hit points? <span class="faq-toggle">+</span></div>
+                    <div class="faq-answer">
+                        <p>Certain racial features and feats can increase your hit points:</p>
+                        <ul>
+                            <li>The <strong>Tough</strong> feat gives you +2 hit points for each level</li>
+                            <li>The <strong>Dwarven Fortitude</strong> feat allows you to spend hit dice when you take the Dodge action</li>
+                            <li>Some subclasses and features may provide temporary hit points or increases to your hit point maximum</li>
+                        </ul>
+                        <p>Our calculator focuses on the core hit point calculation. Remember to add any additional hit points from feats or features to your total!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <!-- Add this after the blog section and before the Privacy Policy section -->
+        <!-- User Reviews Section -->
+        <div id="reviews" class="content-section">
+            <h2>What Players Say About Our HP Calculator</h2>
+            <p>Don't just take our word for it - here's what the D&D community has to say about our hit point calculator!</p>
+            
+            <div class="reviews-container" id="reviewsList">
+                <div class="review">
+                    <div class="review-header">
+                        <div class="reviewer">Eldrin_Magehand</div>
+                        <div class="review-date">January 15, 2025</div>
+                        <div class="review-rating">★★★★★</div>
+                    </div>
+                    <div class="review-content">
+                        <p>"As a new DM with multiple players, this calculator has been a lifesaver. I can quickly verify character sheets and help my players understand how their hit points are calculated. The breakdown feature is particularly helpful for teaching new players!"</p>
+                    </div>
+                </div>
+                
+                <div class="review">
+                    <div class="review-header">
+                        <div class="reviewer">Thorgar_Ironfist</div>
+                        <div class="review-date">December 28, 2024</div>
+                        <div class="review-rating">★★★★★</div>
+                    </div>
+                    <div class="review-content">
+                        <p>"I've been playing D&D for years, and I still use this tool every time I create a new character. The option to switch between average and rolled HP lets me compare both options, and the visual design is just fantastic. It feels like it's straight out of a wizard's spellbook!"</p>
+                    </div>
+                </div>
+                
+                <div class="review">
+                    <div class="review-header">
+                        <div class="reviewer">Sylvanas_Whisperwind</div>
+                        <div class="review-date">January 3, 2025</div>
+                        <div class="review-rating">★★★★☆</div>
+                    </div>
+                    <div class="review-content">
+                        <p>"This calculator is perfect for quickly theorycrafting character builds. I love being able to see how different Constitution scores affect my total HP across multiple levels. Would love to see multiclass support added in the future!"</p>
+                    </div>
+                </div>
+                
+                <div class="review">
+                    <div class="review-header">
+                        <div class="reviewer">DungeonMasterDave</div>
+                        <div class="review-date">November 30, 2024</div>
+                        <div class="review-rating">★★★★★</div>
+                    </div>
+                    <div class="review-content">
+                        <p>"I run a D&D club at my local high school, and this tool has been invaluable for helping new players understand character creation. The interface is intuitive, and the additional guides have answered so many questions. Thank you for creating such a wonderful resource!"</p>
+                    </div>
+                </div>
+                
+                <div class="review">
+                    <div class="review-header">
+                        <div class="reviewer">Rogueish_Charms</div>
+                        <div class="review-date">January 8, 2025</div>
+                        <div class="review-rating">★★★★★</div>
+                    </div>
+                    <div class="review-content">
+                        <p>"As someone who loves rolling dice but hates math, this calculator is perfect. I can enjoy the excitement of rolling for HP without worrying about adding everything up correctly. The site's design is beautiful and really captures the fantasy aesthetic!"</p>
+                    </div>
+                </div>
+                
+                <div class="review">
+                    <div class="review-header">
+                        <div class="reviewer">Arcane_Arcanist</div>
+                        <div class="review-date">December 12, 2024</div>
+                        <div class="review-rating">★★★★☆</div>
+                    </div>
+                    <div class="review-content">
+                        <p>"Solid calculator that does exactly what it promises. The fixed HP option for first level is particularly useful for homebrew classes or custom origins. The mobile responsiveness is great too - I use this on my tablet during sessions all the time."</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="add-review">
+                <h3>Share Your Experience</h3>
+                <p>Have you used our HP calculator? We'd love to hear your feedback!</p>
+                <button id="reviewButton" class="submit-btn">Write a Review</button>
+            </div>
+        </div>
 
-<!-- FAQ Section -->
-<div id="faq" class="content-section">
-    <h2>Frequently Asked Questions</h2>
-    <p>Find answers to common questions about D&D 5e hit points, our calculator, and character optimization.</p>
-    
-    <div class="faq-container">
-        <div class="faq-item">
-            <div class="faq-question">How do you calculate hit points in D&D 5e? <span class="faq-toggle">+</span></div>
-            <div class="faq-answer">
-                <p>In D&D 5e, your character's hit points are determined by your class's hit die plus your Constitution modifier at 1st level. For each additional level, you either roll your hit die and add your Constitution modifier or take the fixed average (which is half your hit die maximum + 1, rounded up) plus your Constitution modifier.</p>
-                <p>For example, a 1st-level fighter with a Constitution modifier of +2 would have 10 + 2 = 12 hit points (d10 hit die). At 2nd level, they could either roll 1d10+2 or take the average of 6 + 2 = 8 additional hit points.</p>
+        <!-- Review Modal -->
+        <div class="modal" id="reviewModal">
+            <div class="modal-content">
+                <button class="close-modal" id="closeModal">&times;</button>
+                <h2>Write a Review</h2>
+                <p>Share your experience with our HP Calculator to help us improve and assist other D&D players!</p>
+                
+                <form class="review-form" id="reviewForm">
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="reviewerName">Your Name or Username</label>
+                            <input type="text" id="reviewerName" name="reviewerName" required placeholder="e.g., DragonSlayer42">
+                        </div>
+                        
+                        <div class="form-field">
+                            <label for="reviewerEmail">Email (optional)</label>
+                            <input type="email" id="reviewerEmail" name="reviewerEmail" placeholder="your.email@example.com">
+                        </div>
+                    </div>
+                    
+                    <div class="form-field">
+                        <label>Your Rating</label>
+                        <div class="rating-stars" id="ratingStars">
+                            <span class="star" data-value="1">★</span>
+                            <span class="star" data-value="2">★</span>
+                            <span class="star" data-value="3">★</span>
+                            <span class="star" data-value="4">★</span>
+                            <span class="star" data-value="5">★</span>
+                        </div>
+                        <input type="hidden" id="ratingValue" name="ratingValue" value="0" required>
+                    </div>
+                    
+                    <div class="form-field">
+                        <label for="reviewTitle">Review Title</label>
+                        <input type="text" id="reviewTitle" name="reviewTitle" required placeholder="Brief summary of your experience">
+                    </div>
+                    
+                    <div class="form-field">
+                        <label for="reviewContent">Your Review</label>
+                        <textarea id="reviewContent" name="reviewContent" required placeholder="Tell us about your experience with the calculator..."></textarea>
+                        <div class="char-count"><span id="charCount">0</span>/500 characters</div>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Submit Review</button>
+                </form>
+                
+                <div class="form-submit-message success" id="successMessage">
+                    Thank you for your review! It has been submitted and will appear after moderation.
+                </div>
+                
+                <div class="form-submit-message error" id="errorMessage">
+                    There was an error submitting your review. Please try again.
+                </div>
             </div>
         </div>
-        
-        <div class="faq-item">
-            <div class="faq-question">What is the hit die for each class? <span class="faq-toggle">+</span></div>
-            <div class="faq-answer">
-                <p>Each class in D&D 5e uses a different hit die:</p>
-                <ul>
-                    <li>Barbarian: d12</li>
-                    <li>Fighter, Paladin, Ranger: d10</li>
-                    <li>Bard, Cleric, Druid, Monk, Rogue, Warlock: d8</li>
-                    <li>Sorcerer, Wizard: d6</li>
-                </ul>
-                <p>Your hit die determines not only your starting hit points but also how much you heal during short rests.</p>
-            </div>
-        </div>
-        
-        <div class="faq-item">
-            <div class="faq-question">Should I roll for HP or take the average? <span class="faq-toggle">+</span></div>
-            <div class="faq-answer">
-                <p>This depends on your preference for risk versus consistency:</p>
-                <ul>
-                    <li><strong>Taking the average</strong> gives you reliable hit point growth that is actually slightly better than the mathematical average (since D&D rounds up).</li>
-                    <li><strong>Rolling</strong> offers the chance for higher hit points but risks lower results.</li>
-                </ul>
-                <p>Many players prefer the average for important characters, while rolling can add excitement for one-shots or less critical characters. Our calculator supports both methods!</p>
-            </div>
-        </div>
-        
-        <div class="faq-item">
-            <div class="faq-question">How does multiclassing affect hit points? <span class="faq-toggle">+</span></div>
-            <div class="faq-answer">
-                <p>When you multiclass, your hit points are calculated using the hit die of each class:</p>
-                <ul>
-                    <li>At 1st level, you use the hit die of your starting class plus your Constitution modifier</li>
-                    <li>For each additional level in any class, you gain hit points based on that class's hit die</li>
-                </ul>
-                <p>For example, a character with 1 level in fighter (d10) and 1 level in wizard (d6) would calculate their hit points as: 1st level (d10 + CON mod) + 2nd level (d6 or average + CON mod).</p>
-                <p>Note: Our current calculator supports single-class characters. Multiclass support may be added in future updates!</p>
-            </div>
-        </div>
-        
-        <div class="faq-item">
-            <div class="faq-question">Does Constitution affect hit points at every level? <span class="faq-toggle">+</span></div>
-            <div class="faq-answer">
-                <p>Yes! Your Constitution modifier is added to your hit points at every level. This means that increasing your Constitution score (through ability score improvements or magic items) retroactively increases your maximum hit points for all levels.</p>
-                <p>For example, if you have a +2 Constitution modifier at 5th level and then increase it to +3, your maximum hit points increase by 5 (one for each level). This makes Constitution one of the most valuable abilities for nearly every character.</p>
-            </div>
-        </div>
-        
-        <div class="faq-item">
-            <div class="faq-question">What are hit dice used for besides calculating HP? <span class="faq-toggle">+</span></div>
-            <div class="faq-answer">
-                <p>Hit dice serve an important function during short rests:</p>
-                <ul>
-                    <li>During a short rest (at least 1 hour), you can spend hit dice to recover hit points</li>
-                    <li>You roll spent hit dice and add your Constitution modifier to determine how many hit points you regain</li>
-                    <li>You can spend as many hit dice as you have available</li>
-                    <li>You regain half your total hit dice (rounded down) after a long rest</li>
-                </ul>
-                <p>This mechanic represents your character's natural resilience and ability to recover from injuries without magical healing.</p>
-            </div>
-        </div>
-        
-        <div class="faq-item">
-            <div class="faq-question">Can I change my HP calculation method after character creation? <span class="faq-toggle">+</span></div>
-            <div class="faq-answer">
-                <p>Officially, the rules don't provide a method for changing how you calculated your hit points after character creation. However, many Dungeon Masters will allow players to recalculate their hit points using the fixed average if they've been particularly unlucky with rolls.</p>
-                <p>If you want to change your method, discuss it with your DM. Some may allow you to use the average for all levels, while others might only allow it for future levels. Our calculator can help you see what your hit points would be with either method!</p>
-            </div>
-        </div>
-        
-        <div class="faq-item">
-            <div class="faq-question">How do racial traits and feats affect hit points? <span class="faq-toggle">+</span></div>
-            <div class="faq-answer">
-                <p>Certain racial features and feats can increase your hit points:</p>
-                <ul>
-                    <li>The <strong>Tough</strong> feat gives you +2 hit points for each level</li>
-                    <li>The <strong>Dwarven Fortitude</strong> feat allows you to spend hit dice when you take the Dodge action</li>
-                    <li>Some subclasses and features may provide temporary hit points or increases to your hit point maximum</li>
-                </ul>
-                <p>Our calculator focuses on the core hit point calculation. Remember to add any additional hit points from feats or features to your total!</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- User Reviews Section -->
-<div id="reviews" class="content-section">
-    <h2>What Players Say About Our HP Calculator</h2>
-    <p>Don't just take our word for it - here's what the D&D community has to say about our hit point calculator!</p>
-    
-    <div class="reviews-container">
-        <div class="review">
-            <div class="review-header">
-                <div class="reviewer">Eldrin_Magehand</div>
-                <div class="review-date">January 15, 2025</div>
-                <div class="review-rating">★★★★★</div>
-            </div>
-            <div class="review-content">
-                <p>"As a new DM with multiple players, this calculator has been a lifesaver. I can quickly verify character sheets and help my players understand how their hit points are calculated. The breakdown feature is particularly helpful for teaching new players!"</p>
-            </div>
-        </div>
-        
-        <div class="review">
-            <div class="review-header">
-                <div class="reviewer">Thorgar_Ironfist</div>
-                <div class="review-date">December 28, 2024</div>
-                <div class="review-rating">★★★★★</div>
-            </div>
-            <div class="review-content">
-                <p>"I've been playing D&D for years, and I still use this tool every time I create a new character. The option to switch between average and rolled HP lets me compare both options, and the visual design is just fantastic. It feels like it's straight out of a wizard's spellbook!"</p>
-            </div>
-        </div>
-        
-        <div class="review">
-            <div class="review-header">
-                <div class="reviewer">Sylvanas_Whisperwind</div>
-                <div class="review-date">January 3, 2025</div>
-                <div class="review-rating">★★★★☆</div>
-            </div>
-            <div class="review-content">
-                <p>"This calculator is perfect for quickly theorycrafting character builds. I love being able to see how different Constitution scores affect my total HP across multiple levels. Would love to see multiclass support added in the future!"</p>
-            </div>
-        </div>
-        
-        <div class="review">
-            <div class="review-header">
-                <div class="reviewer">DungeonMasterDave</div>
-                <div class="review-date">November 30, 2024</div>
-                <div class="review-rating">★★★★★</div>
-            </div>
-            <div class="review-content">
-                <p>"I run a D&D club at my local high school, and this tool has been invaluable for helping new players understand character creation. The interface is intuitive, and the additional guides have answered so many questions. Thank you for creating such a wonderful resource!"</p>
-            </div>
-        </div>
-        
-        <div class="review">
-            <div class="review-header">
-                <div class="reviewer">Rogueish_Charms</div>
-                <div class="review-date">January 8, 2025</div>
-                <div class="review-rating">★★★★★</div>
-            </div>
-            <div class="review-content">
-                <p>"As someone who loves rolling dice but hates math, this calculator is perfect. I can enjoy the excitement of rolling for HP without worrying about adding everything up correctly. The site's design is beautiful and really captures the fantasy aesthetic!"</p>
-            </div>
-        </div>
-        
-        <div class="review">
-            <div class="review-header">
-                <div class="reviewer">Arcane_Arcanist</div>
-                <div class="review-date">December 12, 2024</div>
-                <div class="review-rating">★★★★☆</div>
-            </div>
-            <div class="review-content">
-                <p>"Solid calculator that does exactly what it promises. The fixed HP option for first level is particularly useful for homebrew classes or custom origins. The mobile responsiveness is great too - I use this on my tablet during sessions all the time."</p>
-            </div>
-        </div>
-    </div>
-    
-    <div class="add-review">
-        <h3>Share Your Experience</h3>
-        <p>Have you used our HP calculator? We'd love to hear your feedback!</p>
-        <button id="reviewButton" class="submit-btn">Write a Review</button>
-    </div>
-</div>
         
         <!-- Privacy Policy Section -->
         <div id="privacy" class="content-section legal-content">
@@ -1584,6 +1853,201 @@
                     contactForm.reset();
                 });
             }
+            
+            // FAQ toggle functionality
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', () => {
+                    item.classList.toggle('active');
+                });
+            });
+            
+            // Review system functionality
+            const reviewButton = document.getElementById('reviewButton');
+            const reviewModal = document.getElementById('reviewModal');
+            const closeModal = document.getElementById('closeModal');
+            const reviewForm = document.getElementById('reviewForm');
+            const stars = document.querySelectorAll('.star');
+            const ratingValue = document.getElementById('ratingValue');
+            const reviewContent = document.getElementById('reviewContent');
+            const charCount = document.getElementById('charCount');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            const reviewsList = document.getElementById('reviewsList');
+            
+            // Open modal when review button is clicked
+            reviewButton.addEventListener('click', () => {
+                reviewModal.style.display = 'flex';
+            });
+            
+            // Close modal when X is clicked
+            closeModal.addEventListener('click', () => {
+                reviewModal.style.display = 'none';
+                resetForm();
+            });
+            
+            // Close modal when clicking outside content
+            reviewModal.addEventListener('click', (e) => {
+                if (e.target === reviewModal) {
+                    reviewModal.style.display = 'none';
+                    resetForm();
+                }
+            });
+            
+            // Star rating functionality
+            stars.forEach(star => {
+                star.addEventListener('click', () => {
+                    const value = parseInt(star.getAttribute('data-value'));
+                    ratingValue.value = value;
+                    
+                    // Update star display
+                    stars.forEach(s => {
+                        const starValue = parseInt(s.getAttribute('data-value'));
+                        if (starValue <= value) {
+                            s.classList.add('active');
+                        } else {
+                            s.classList.remove('active');
+                        }
+                    });
+                });
+                
+                // Add hover effect
+                star.addEventListener('mouseover', () => {
+                    const value = parseInt(star.getAttribute('data-value'));
+                    stars.forEach(s => {
+                        const starValue = parseInt(s.getAttribute('data-value'));
+                        if (starValue <= value) {
+                            s.style.transform = 'scale(1.2)';
+                        }
+                    });
+                });
+                
+                star.addEventListener('mouseout', () => {
+                    stars.forEach(s => {
+                        s.style.transform = 'scale(1)';
+                    });
+                });
+            });
+            
+            // Character count for review content
+            reviewContent.addEventListener('input', () => {
+                const count = reviewContent.value.length;
+                charCount.textContent = count;
+                
+                if (count > 500) {
+                    charCount.style.color = 'var(--dragon-red)';
+                } else {
+                    charCount.style.color = 'var(--secondary)';
+                }
+            });
+            
+            // Form submission
+            reviewForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                // Basic validation
+                if (ratingValue.value === '0') {
+                    alert('Please select a rating');
+                    return;
+                }
+                
+                if (reviewContent.value.length > 500) {
+                    alert('Please keep your review under 500 characters');
+                    return;
+                }
+                
+                // Get form data
+                const formData = new FormData(reviewForm);
+                const reviewData = {
+                    name: formData.get('reviewerName'),
+                    email: formData.get('reviewerEmail'),
+                    rating: parseInt(formData.get('ratingValue')),
+                    title: formData.get('reviewTitle'),
+                    content: formData.get('reviewContent'),
+                    date: new Date().toLocaleDateString('en-US', { 
+                        year: 'numeric', 
+                        month: 'long', 
+                        day: 'numeric' 
+                    })
+                };
+                
+                // In a real application, you would send this data to a server
+                // For this demo, we'll simulate a successful submission
+                
+                // Simulate API call with timeout
+                setTimeout(() => {
+                    // Add the new review to the page
+                    addReviewToPage(reviewData);
+                    
+                    // Show success message
+                    successMessage.style.display = 'block';
+                    errorMessage.style.display = 'none';
+                    
+                    // Reset form and close modal after a delay
+                    setTimeout(() => {
+                        reviewModal.style.display = 'none';
+                        resetForm();
+                        successMessage.style.display = 'none';
+                    }, 2000);
+                }, 1000);
+            });
+            
+            // Function to add a review to the page
+            function addReviewToPage(reviewData) {
+                const reviewElement = document.createElement('div');
+                reviewElement.classList.add('review', 'user-review');
+                
+                // Generate star rating HTML
+                let starsHtml = '';
+                for (let i = 1; i <= 5; i++) {
+                    starsHtml += i <= reviewData.rating ? '★' : '☆';
+                }
+                
+                reviewElement.innerHTML = `
+                    <div class="review-header">
+                        <div class="reviewer">${reviewData.name}</div>
+                        <div class="review-date">${reviewData.date}</div>
+                        <div class="review-rating">${starsHtml}</div>
+                    </div>
+                    <div class="review-content">
+                        <p><strong>${reviewData.title}</strong></p>
+                        <p>${reviewData.content}</p>
+                    </div>
+                `;
+                
+                // Add to the beginning of the reviews list
+                reviewsList.insertBefore(reviewElement, reviewsList.firstChild);
+            }
+            
+            // Function to reset the form
+            function resetForm() {
+                reviewForm.reset();
+                ratingValue.value = '0';
+                stars.forEach(star => {
+                    star.classList.remove('active');
+                });
+                charCount.textContent = '0';
+                charCount.style.color = 'var(--secondary)';
+            }
+            
+            // Smooth scrolling for navigation
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 20,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
             
             // Calculate on page load
             calculateHP('average');
