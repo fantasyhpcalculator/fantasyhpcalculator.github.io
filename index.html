@@ -1002,6 +1002,58 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        /* Cookie Consent Banner */
+        .cookie-consent {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 600px;
+            background: var(--dark-parchment);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            display: none;
+            border: 2px solid var(--border);
+        }
+
+        .cookie-consent p {
+            margin-bottom: 15px;
+        }
+
+        .cookie-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        .cookie-buttons button {
+            width: auto;
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+
+        /* Print Styles */
+        @media print {
+            .ad-container, nav, .cookie-consent {
+                display: none !important;
+            }
+            
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                border: none;
+                padding: 0;
+                margin: 0;
+            }
+        }
     </style>
     <script type="application/ld+json">
 {
@@ -1766,6 +1818,15 @@
         </footer>
     </div>
 
+    <!-- Cookie Consent Banner -->
+    <div class="cookie-consent" id="cookieConsent">
+        <p>We use cookies to enhance your experience and analyze site traffic. By clicking "Accept", you consent to our use of cookies.</p>
+        <div class="cookie-buttons">
+            <button id="acceptCookies" class="submit-btn">Accept</button>
+            <button id="rejectCookies" class="roll-button">Reject</button>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const classSelect = document.getElementById('characterClass');
@@ -1779,6 +1840,30 @@
             const totalHPSpan = document.getElementById('totalHP');
             const breakdownDiv = document.getElementById('breakdown');
             const hitDiceDiv = document.getElementById('hitDice');
+            
+            // Cookie consent elements
+            const cookieConsent = document.getElementById('cookieConsent');
+            const acceptCookies = document.getElementById('acceptCookies');
+            const rejectCookies = document.getElementById('rejectCookies');
+            
+            // Show cookie consent if not already accepted
+            if (!localStorage.getItem('cookiesAccepted')) {
+                setTimeout(() => {
+                    cookieConsent.style.display = 'block';
+                }, 2000);
+            }
+            
+            // Handle cookie acceptance
+            acceptCookies.addEventListener('click', () => {
+                localStorage.setItem('cookiesAccepted', 'true');
+                cookieConsent.style.display = 'none';
+            });
+            
+            // Handle cookie rejection
+            rejectCookies.addEventListener('click', () => {
+                localStorage.setItem('cookiesAccepted', 'false');
+                cookieConsent.style.display = 'none';
+            });
             
             // Class hit dice mapping
             const classHitDice = {
