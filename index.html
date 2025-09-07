@@ -27,7 +27,7 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'MedievalSharp', cursive, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         @font-face {
@@ -36,26 +36,33 @@
             font-weight: 400;
             src: url(https://fonts.gstatic.com/s/medievalsharp/v24/EvOJzAlL3oU5AQl2mP5KdgptAq96Mw.woff2) format('woff2');
             unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+            font-display: swap;
         }
         
         body {
             background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%233a2c28"/><path d="M0,0 L100,100 M100,0 L0,100" stroke="%235e4122" stroke-width="0.5"/></svg>');
             color: var(--ink);
             line-height: 1.6;
-            padding: 20px;
+            padding: 10px;
             min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        /* Load MedievalSharp for elements that need it */
+        .medieval-font {
+            font-family: 'MedievalSharp', cursive, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         .container {
             max-width: 1200px;
-            margin: 20px auto;
+            margin: 10px auto;
             background: var(--parchment);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 0 1px var(--border), 0 0 10px rgba(139, 90, 43, 0.5);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2), 0 0 0 1px var(--border), 0 0 5px rgba(139, 90, 43, 0.3);
             position: relative;
             overflow: hidden;
-            border: 8px solid transparent;
+            border: 6px solid transparent;
             background-clip: padding-box;
             background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f2e6d0"/><path d="M0,0 L100,100 M100,0 L0,100" stroke="%23e2d0b3" stroke-width="0.5"/></svg>');
         }
@@ -68,15 +75,15 @@
             bottom: 0;
             left: 0;
             z-index: -1;
-            margin: -10px;
-            border-radius: 20px;
+            margin: -8px;
+            border-radius: 16px;
             background: linear-gradient(45deg, var(--secondary), var(--accent), var(--gold), var(--accent), var(--secondary));
         }
         
         header {
             text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
             border-bottom: 2px solid var(--border);
             position: relative;
         }
@@ -85,49 +92,67 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 15px;
-            gap: 15px;
+            margin-bottom: 10px;
+            gap: 10px;
+            flex-wrap: wrap;
         }
         
         .logo-icon {
-            font-size: 3rem;
+            font-size: 2.2rem;
             color: var(--dragon-red);
             filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.3));
         }
         
         h1 {
             color: var(--dragon-red);
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 0 var(--gold), 4px 4px 0 rgba(0, 0, 0, 0.2);
-            letter-spacing: 1px;
-            font-size: 2.8rem;
+            margin-bottom: 8px;
+            text-shadow: 1px 1px 0 var(--gold), 2px 2px 0 rgba(0, 0, 0, 0.2);
+            letter-spacing: 0.5px;
+            font-size: 2rem;
+            font-family: 'MedievalSharp', cursive;
         }
         
         .description {
             color: var(--secondary);
-            font-size: 1.2rem;
-            max-width: 600px;
+            font-size: 1rem;
+            max-width: 100%;
             margin: 0 auto;
+            padding: 0 10px;
         }
         
         .calculator {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 30px;
         }
         
-        @media (max-width: 768px) {
+        @media (min-width: 768px) {
             .calculator {
-                grid-template-columns: 1fr;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 25px;
+            }
+            
+            body {
+                padding: 15px;
+            }
+            
+            .container {
+                padding: 25px;
+                margin: 15px auto;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
             }
         }
         
         .input-section, .result-section {
-            padding: 25px;
+            padding: 20px;
             background: rgba(255, 255, 255, 0.7);
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(139, 90, 43, 0.3);
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(139, 90, 43, 0.3);
             border: 2px solid var(--border);
             position: relative;
         }
@@ -135,57 +160,59 @@
         .input-section::before, .result-section::before {
             content: "";
             position: absolute;
-            top: 5px;
-            left: 5px;
-            right: 5px;
-            bottom: 5px;
+            top: 4px;
+            left: 4px;
+            right: 4px;
+            bottom: 4px;
             border: 1px solid rgba(139, 90, 43, 0.2);
-            border-radius: 8px;
+            border-radius: 6px;
             pointer-events: none;
         }
         
         .section-title {
             color: var(--dwarf-blue);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             text-align: center;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             text-shadow: 1px 1px 0 var(--gold);
             position: relative;
             display: inline-block;
             left: 50%;
             transform: translateX(-50%);
-            padding: 0 15px;
+            padding: 0 12px;
+            font-family: 'MedievalSharp', cursive;
         }
         
         .section-title::before, .section-title::after {
             content: "◆";
             color: var(--accent);
-            margin: 0 10px;
+            margin: 0 8px;
+            font-size: 0.9rem;
         }
         
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             position: relative;
         }
         
         label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             font-weight: 600;
             color: var(--dwarf-blue);
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
         
         select, input {
             width: 100%;
-            padding: 12px 15px;
+            padding: 10px 12px;
             border: 2px solid var(--border);
-            border-radius: 8px;
-            font-size: 16px;
+            border-radius: 6px;
+            font-size: 16px; /* Prevent zoom on iOS */
             background: var(--parchment);
             color: var(--ink);
             transition: all 0.3s;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
         }
         
         select:focus, input:focus {
@@ -198,21 +225,22 @@
             appearance: none;
             background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%238b5a2b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>');
             background-repeat: no-repeat;
-            background-position: right 12px center;
-            background-size: 16px;
-            padding-right: 40px;
+            background-position: right 10px center;
+            background-size: 14px;
+            padding-right: 35px;
         }
         
         .radio-group {
             display: flex;
-            gap: 20px;
-            margin-bottom: 15px;
+            gap: 15px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
         }
         
         .radio-option {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
         
         .radio-option input {
@@ -223,19 +251,20 @@
             background: linear-gradient(to bottom, var(--accent), var(--secondary));
             color: var(--parchment);
             border: none;
-            padding: 14px 20px;
-            border-radius: 8px;
+            padding: 12px 16px;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 600;
             transition: all 0.3s;
             width: 100%;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-            letter-spacing: 1px;
-            box-shadow: 0 4px 0 var(--secondary), 0 8px 10px rgba(0, 0, 0, 0.2);
+            letter-spacing: 0.5px;
+            box-shadow: 0 3px 0 var(--secondary), 0 5px 8px rgba(0, 0, 0, 0.2);
             position: relative;
             overflow: hidden;
-            margin-top: 10px;
+            margin-top: 8px;
+            font-family: 'MedievalSharp', cursive;
         }
         
         button::before {
@@ -251,7 +280,7 @@
         
         button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 0 var(--secondary), 0 10px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 0 var(--secondary), 0 7px 10px rgba(0, 0, 0, 0.3);
         }
         
         button:hover::before {
@@ -259,97 +288,157 @@
         }
         
         button:active {
-            transform: translateY(2px);
-            box-shadow: 0 2px 0 var(--secondary), 0 4px 8px rgba(0, 0, 0, 0.2);
+            transform: translateY(1px);
+            box-shadow: 0 2px 0 var(--secondary), 0 3px 5px rgba(0, 0, 0, 0.2);
         }
         
         .roll-button {
             background: linear-gradient(to bottom, var(--gold), var(--accent));
             margin-top: 5px;
-            font-size: 16px;
-            padding: 10px 15px;
+            font-size: 14px;
+            padding: 10px 12px;
         }
         
         .hp-display {
             text-align: center;
-            font-size: 3rem;
+            font-size: 2.2rem;
             font-weight: bold;
             color: var(--dragon-red);
-            margin: 25px 0;
-            text-shadow: 2px 2px 0 var(--gold), 4px 4px 0 rgba(0, 0, 0, 0.2);
+            margin: 20px 0;
+            text-shadow: 1px 1px 0 var(--gold), 2px 2px 0 rgba(0, 0, 0, 0.2);
             position: relative;
             display: inline-block;
             width: 100%;
+            font-family: 'MedievalSharp', cursive;
         }
         
         .details {
-            margin-top: 20px;
+            margin-top: 15px;
         }
         
         .details h3 {
             color: var(--dwarf-blue);
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             border-bottom: 2px solid var(--border);
-            padding-bottom: 8px;
+            padding-bottom: 6px;
             text-align: center;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
+            font-family: 'MedievalSharp', cursive;
         }
         
         .details p {
-            margin-bottom: 10px;
-            padding: 5px 0;
+            margin-bottom: 8px;
+            padding: 4px 0;
             border-bottom: 1px dotted var(--border);
+            font-size: 0.95rem;
         }
         
         .hit-points-breakdown {
             background: var(--dark-parchment);
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 15px;
-            border-left: 5px solid var(--accent);
-            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 12px;
+            border-left: 4px solid var(--accent);
+            box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1);
+            font-size: 0.9rem;
         }
         
         .hit-dice-summary {
-            margin-top: 20px;
+            margin-top: 15px;
             font-style: italic;
             text-align: center;
             color: var(--dwarf-blue);
-            font-size: 1.1rem;
-            padding: 10px;
+            font-size: 0.95rem;
+            padding: 8px;
             background: rgba(200, 169, 113, 0.2);
-            border-radius: 8px;
+            border-radius: 6px;
         }
         
         /* Navigation Styles */
         nav {
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             background: var(--dark-parchment);
-            border-radius: 10px;
-            padding: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 12px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .nav-toggle {
+            display: block;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            z-index: 100;
+        }
+        
+        .nav-toggle span {
+            display: block;
+            position: absolute;
+            height: 3px;
+            width: 100%;
+            background: var(--dwarf-blue);
+            border-radius: 3px;
+            opacity: 1;
+            left: 0;
+            transform: rotate(0deg);
+            transition: .25s ease-in-out;
+        }
+        
+        .nav-toggle span:nth-child(1) {
+            top: 6px;
+        }
+        
+        .nav-toggle span:nth-child(2) {
+            top: 13px;
+        }
+        
+        .nav-toggle span:nth-child(3) {
+            top: 20px;
+        }
+        
+        .nav-toggle.open span:nth-child(1) {
+            top: 13px;
+            transform: rotate(135deg);
+        }
+        
+        .nav-toggle.open span:nth-child(2) {
+            opacity: 0;
+            left: -30px;
+        }
+        
+        .nav-toggle.open span:nth-child(3) {
+            top: 13px;
+            transform: rotate(-135deg);
         }
         
         .nav-menu {
-            display: flex;
-            justify-content: center;
+            display: none;
+            flex-direction: column;
             list-style: none;
-            flex-wrap: wrap;
-            gap: 10px;
+            gap: 5px;
+        }
+        
+        .nav-menu.open {
+            display: flex;
         }
         
         .nav-menu li {
-            margin: 0 5px;
+            margin: 3px 0;
         }
         
         .nav-menu a {
             text-decoration: none;
             color: var(--dwarf-blue);
             font-weight: 600;
-            padding: 10px 15px;
-            border-radius: 5px;
+            padding: 8px 12px;
+            border-radius: 4px;
             transition: all 0.3s;
             display: block;
+            font-size: 0.95rem;
         }
         
         .nav-menu a:hover {
@@ -357,94 +446,129 @@
             color: var(--parchment);
         }
         
+        @media (min-width: 768px) {
+            .nav-toggle {
+                display: none;
+            }
+            
+            .nav-menu {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            
+            .nav-menu li {
+                margin: 0 3px;
+            }
+        }
+        
         /* Content Sections */
         .content-section {
-            padding: 30px;
+            padding: 20px;
             background: rgba(255, 255, 255, 0.7);
-            border-radius: 10px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
             border: 2px solid var(--border);
         }
         
         .content-section h2 {
             color: var(--dragon-red);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             text-align: center;
             border-bottom: 2px solid var(--border);
-            padding-bottom: 10px;
+            padding-bottom: 8px;
+            font-size: 1.5rem;
+            font-family: 'MedievalSharp', cursive;
         }
         
         .content-section h3 {
             color: var(--dwarf-blue);
-            margin: 20px 0 10px;
+            margin: 15px 0 8px;
+            font-size: 1.2rem;
+            font-family: 'MedievalSharp', cursive;
         }
         
         .content-section p {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
         }
         
         .content-section ul, .content-section ol {
-            margin-left: 20px;
-            margin-bottom: 20px;
+            margin-left: 18px;
+            margin-bottom: 15px;
         }
         
         .content-section li {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
         }
         
         /* Blog Section */
         .blog-posts {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        @media (min-width: 600px) {
+            .blog-posts {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 15px;
+            }
         }
         
         .blog-post {
             background: var(--dark-parchment);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            border-radius: 6px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s;
         }
         
         .blog-post:hover {
-            transform: translateY(-5px);
+            transform: translateY(-3px);
         }
         
         .blog-post h3 {
             color: var(--dragon-red);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
         }
         
         .blog-post p {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
         }
         
         /* Ad Spaces */
         .ad-container {
             background: var(--dark-parchment);
-            border-radius: 8px;
-            padding: 15px;
-            margin: 25px 0;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 20px 0;
             text-align: center;
             border: 1px dashed var(--border);
+            overflow: hidden;
         }
         
         .ad-label {
             display: block;
             text-transform: uppercase;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             color: var(--secondary);
-            margin-bottom: 10px;
-            letter-spacing: 1px;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
         }
         
         .ad-unit {
             width: 100%;
             height: auto;
-            min-height: 90px;
+            min-height: 50px;
             background: rgba(200, 169, 113, 0.2);
             border-radius: 4px;
             display: flex;
@@ -452,6 +576,7 @@
             justify-content: center;
             color: var(--secondary);
             font-style: italic;
+            font-size: 0.8rem;
         }
         
         .ad-unit.horizontal {
@@ -460,16 +585,22 @@
         
         .ad-unit.vertical {
             height: 250px;
-            width: 300px;
+            width: 100%;
             margin: 0 auto;
         }
         
+        @media (min-width: 768px) {
+            .ad-unit.vertical {
+                width: 300px;
+            }
+        }
+        
         footer {
-            margin-top: 40px;
+            margin-top: 30px;
             text-align: center;
             color: var(--secondary);
-            font-size: 0.9rem;
-            padding-top: 20px;
+            font-size: 0.85rem;
+            padding-top: 15px;
             border-top: 2px solid var(--border);
             width: 100%;
         }
@@ -478,8 +609,9 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 10px;
+            gap: 10px;
+            margin-top: 8px;
+            font-size: 0.9rem;
         }
         
         .footer-links a {
@@ -492,22 +624,25 @@
         }
         
         .backlinks {
-            margin-top: 20px;
-            padding: 15px;
+            margin-top: 15px;
+            padding: 12px;
             background: var(--dark-parchment);
-            border-radius: 8px;
+            border-radius: 6px;
             text-align: center;
+            font-size: 0.9rem;
         }
         
         .backlinks h3 {
             color: var(--dwarf-blue);
-            margin-bottom: 15px;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
         }
         
         .backlinks a {
             color: var(--accent);
             text-decoration: none;
-            margin: 0 10px;
+            margin: 0 5px;
+            font-size: 0.9rem;
         }
         
         .backlinks a:hover {
@@ -516,21 +651,28 @@
         
         .decoration {
             position: absolute;
-            font-size: 8rem;
+            font-size: 5rem;
             opacity: 0.05;
             z-index: 0;
             color: var(--dragon-red);
+            display: none;
+        }
+        
+        @media (min-width: 992px) {
+            .decoration {
+                display: block;
+            }
         }
         
         .decoration.top-left {
-            top: 20px;
-            left: 20px;
+            top: 15px;
+            left: 15px;
             transform: rotate(-30deg);
         }
         
         .decoration.bottom-right {
-            bottom: 20px;
-            right: 20px;
+            bottom: 15px;
+            right: 15px;
             transform: rotate(30deg);
         }
         
@@ -542,12 +684,12 @@
         
         .tooltip .tooltiptext {
             visibility: hidden;
-            width: 200px;
+            width: 180px;
             background-color: var(--secondary);
             color: var(--parchment);
             text-align: center;
-            border-radius: 6px;
-            padding: 10px;
+            border-radius: 4px;
+            padding: 8px;
             position: absolute;
             z-index: 1;
             bottom: 125%;
@@ -555,8 +697,8 @@
             transform: translateX(-50%);
             opacity: 0;
             transition: opacity 0.3s;
-            font-size: 0.9rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            font-size: 0.8rem;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
         }
         
         .tooltip:hover .tooltiptext {
@@ -566,70 +708,76 @@
         
         /* SEO optimized content */
         .seo-content {
-            margin-top: 40px;
-            padding: 20px;
+            margin-top: 30px;
+            padding: 15px;
             background: var(--dark-parchment);
-            border-radius: 10px;
-            border-left: 5px solid var(--accent);
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
         }
         
         .seo-content h2 {
             color: var(--dwarf-blue);
-            margin-bottom: 15px;
+            margin-bottom: 12px;
+            font-size: 1.3rem;
         }
         
         .seo-content h3 {
             color: var(--dragon-red);
-            margin: 20px 0 10px;
+            margin: 15px 0 8px;
+            font-size: 1.1rem;
         }
         
         .faq-item {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
         
         .faq-question {
             font-weight: bold;
             color: var(--dwarf-blue);
-            margin-bottom: 5px;
+            margin-bottom: 4px;
         }
 
         /* Contact Form Styles */
         .contact-form {
-            display: grid;
-            gap: 20px;
-            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 15px;
         }
         
         .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
         
-        @media (max-width: 600px) {
+        @media (min-width: 600px) {
             .form-row {
-                grid-template-columns: 1fr;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 15px;
             }
         }
         
         .form-field {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
         
         .form-field label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             font-weight: 600;
             color: var(--dwarf-blue);
+            font-size: 0.95rem;
         }
         
         .form-field input,
         .form-field textarea,
         .form-field select {
             width: 100%;
-            padding: 12px;
+            padding: 10px;
             border: 2px solid var(--border);
-            border-radius: 8px;
+            border-radius: 6px;
             font-size: 16px;
             background: var(--parchment);
             color: var(--ink);
@@ -637,7 +785,7 @@
         }
         
         .form-field textarea {
-            min-height: 150px;
+            min-height: 120px;
             resize: vertical;
         }
         
@@ -653,45 +801,56 @@
             background: linear-gradient(to bottom, var(--accent), var(--secondary));
             color: var(--parchment);
             border: none;
-            padding: 14px 20px;
-            border-radius: 8px;
+            padding: 12px 16px;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 600;
             transition: all 0.3s;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-            letter-spacing: 1px;
-            box-shadow: 0 4px 0 var(--secondary), 0 8px 10px rgba(0, 0, 0, 0.2);
-            margin-top: 10px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 3px 0 var(--secondary), 0 5px 8px rgba(0, 0, 0, 0.2);
+            margin-top: 8px;
+            font-family: 'MedievalSharp', cursive;
         }
         
         .submit-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 0 var(--secondary), 0 10px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 0 var(--secondary), 0 7px 10px rgba(0, 0, 0, 0.3);
         }
         
         .contact-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        @media (min-width: 600px) {
+            .contact-info {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 15px;
+            }
         }
         
         .contact-card {
             background: var(--dark-parchment);
-            padding: 20px;
-            border-radius: 8px;
+            padding: 15px;
+            border-radius: 6px;
             text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
         }
         
         .contact-card h3 {
             color: var(--dragon-red);
-            margin-bottom: 15px;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
         }
         
         .contact-card p {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
         }
         
         /* Legal pages styling */
@@ -699,61 +858,73 @@
             text-align: left;
             border-bottom: none;
             padding-bottom: 0;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            font-size: 1.4rem;
         }
         
         .legal-content h3 {
-            margin: 25px 0 10px;
+            margin: 20px 0 8px;
             color: var(--dragon-red);
+            font-size: 1.2rem;
         }
         
         .legal-content p {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
         }
         
         .legal-content ul {
-            margin-left: 20px;
-            margin-bottom: 20px;
+            margin-left: 18px;
+            margin-bottom: 15px;
         }
         
         .last-updated {
             font-style: italic;
             color: var(--secondary);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             text-align: right;
+            font-size: 0.9rem;
         }
 
         /* Backlinks Section Styles */
         .backlinks-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        @media (min-width: 600px) {
+            .backlinks-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 15px;
+            }
         }
 
         .backlink-card {
             background: var(--dark-parchment);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            border-radius: 6px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s;
-            border-left: 4px solid var(--accent);
+            border-left: 3px solid var(--accent);
         }
 
         .backlink-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
         }
 
         .backlink-card h3 {
             color: var(--dragon-red);
-            margin-bottom: 10px;
-            font-size: 1.2rem;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
         }
 
         .backlink-card p {
-            margin-bottom: 15px;
-            font-size: 0.95rem;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
         }
 
         .backlink-card a {
@@ -762,7 +933,8 @@
             font-weight: 600;
             display: inline-flex;
             align-items: center;
-            gap: 5px;
+            gap: 4px;
+            font-size: 0.9rem;
         }
 
         .backlink-card a:hover {
@@ -771,39 +943,40 @@
         }
 
         .backlink-icon {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
         }
 
         .seo-backlinks {
-            margin-top: 40px;
-            padding: 25px;
+            margin-top: 30px;
+            padding: 20px;
             background: var(--dark-parchment);
-            border-radius: 10px;
+            border-radius: 8px;
             border: 2px solid var(--border);
         }
 
         .seo-backlinks h2 {
             color: var(--dragon-red);
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             border-bottom: 2px solid var(--border);
-            padding-bottom: 10px;
+            padding-bottom: 8px;
+            font-size: 1.4rem;
         }
         
         /* FAQ Styles */
         .faq-container {
-            margin-top: 25px;
+            margin-top: 20px;
         }
 
         .faq-item {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             border: 1px solid var(--border);
-            border-radius: 8px;
+            border-radius: 6px;
             overflow: hidden;
         }
 
         .faq-question {
-            padding: 15px 20px;
+            padding: 12px 15px;
             background: var(--dark-parchment);
             font-weight: 600;
             color: var(--dwarf-blue);
@@ -812,6 +985,7 @@
             justify-content: space-between;
             align-items: center;
             transition: background-color 0.3s;
+            font-size: 1rem;
         }
 
         .faq-question:hover {
@@ -820,20 +994,21 @@
         }
 
         .faq-toggle {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: bold;
         }
 
         .faq-answer {
-            padding: 0 20px;
+            padding: 0 15px;
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s ease, padding 0.3s ease;
             background: rgba(255, 255, 255, 0.5);
+            font-size: 0.95rem;
         }
 
         .faq-item.active .faq-answer {
-            padding: 20px;
+            padding: 15px;
             max-height: 1000px;
         }
 
@@ -843,59 +1018,71 @@
 
         /* Reviews Styles */
         .reviews-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        @media (min-width: 600px) {
+            .reviews-container {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 15px;
+            }
         }
 
         .review {
             background: var(--dark-parchment);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-left: 4px solid var(--accent);
+            padding: 15px;
+            border-radius: 6px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            border-left: 3px solid var(--accent);
         }
 
         .review-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             flex-wrap: wrap;
+            gap: 5px;
         }
 
         .reviewer {
             font-weight: 600;
             color: var(--dragon-red);
+            font-size: 0.95rem;
         }
 
         .review-date {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: var(--secondary);
         }
 
         .review-rating {
             color: var(--gold);
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
 
         .review-content {
-            line-height: 1.6;
+            line-height: 1.5;
+            font-size: 0.9rem;
         }
 
         .add-review {
             text-align: center;
-            margin-top: 40px;
-            padding: 25px;
+            margin-top: 30px;
+            padding: 20px;
             background: var(--dark-parchment);
-            border-radius: 8px;
+            border-radius: 6px;
             border: 2px dashed var(--border);
         }
 
         .add-review h3 {
             color: var(--dragon-red);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            font-size: 1.2rem;
         }
         
         /* Review Modal Styles */
@@ -910,26 +1097,27 @@
             z-index: 1000;
             justify-content: center;
             align-items: center;
+            padding: 15px;
         }
 
         .modal-content {
             background: var(--parchment);
-            padding: 30px;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 600px;
+            padding: 20px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 500px;
             max-height: 90vh;
             overflow-y: auto;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            border: 3px solid var(--border);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+            border: 2px solid var(--border);
             position: relative;
         }
 
         .close-modal {
             position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 1.5rem;
+            top: 10px;
+            right: 10px;
+            font-size: 1.3rem;
             cursor: pointer;
             color: var(--dragon-red);
             background: none;
@@ -940,36 +1128,38 @@
 
         .rating-stars {
             display: flex;
-            gap: 10px;
-            margin: 15px 0;
+            gap: 8px;
+            margin: 12px 0;
+            justify-content: center;
         }
 
         .star {
-            font-size: 2rem;
+            font-size: 1.7rem;
             color: var(--gold);
             cursor: pointer;
             transition: transform 0.2s;
         }
 
         .star:hover {
-            transform: scale(1.2);
+            transform: scale(1.1);
         }
 
         .star.active {
             color: var(--dragon-red);
-            text-shadow: 0 0 5px rgba(138, 3, 3, 0.5);
+            text-shadow: 0 0 3px rgba(138, 3, 3, 0.5);
         }
 
         .review-form .form-field {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .form-submit-message {
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 8px;
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 6px;
             text-align: center;
             display: none;
+            font-size: 0.9rem;
         }
 
         .success {
@@ -987,53 +1177,54 @@
         /* Character counter for review text */
         .char-count {
             text-align: right;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--secondary);
-            margin-top: 5px;
+            margin-top: 4px;
         }
         
         /* User review in the list */
         .user-review {
             animation: fadeIn 0.5s ease-in;
-            border-left: 4px solid var(--dragon-red);
+            border-left: 3px solid var(--dragon-red);
         }
         
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         /* Cookie Consent Banner */
         .cookie-consent {
             position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            max-width: 600px;
+            bottom: 10px;
+            left: 10px;
+            right: 10px;
             background: var(--dark-parchment);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
             z-index: 1000;
             display: none;
             border: 2px solid var(--border);
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .cookie-consent p {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
         }
 
         .cookie-buttons {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             justify-content: flex-end;
         }
 
         .cookie-buttons button {
             width: auto;
-            padding: 8px 16px;
-            font-size: 14px;
+            padding: 6px 12px;
+            font-size: 0.9rem;
         }
 
         /* Print Styles */
@@ -1080,14 +1271,19 @@
         <header>
             <div class="logo">
                 <span class="logo-icon">🧙</span>
-                <h1>Fantasy HP Calculator</h1>
+                <h1 class="medieval-font">Fantasy HP Calculator</h1>
                 <span class="logo-icon">⚔️</span>
             </div>
             <p class="description">Calculate your D&D 5e character's hit points with this mystical tool</p>
         </header>
         
         <nav>
-            <ul class="nav-menu">
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
                 <li><a href="#calculator">Calculator</a></li>
                 <li><a href="#content">Content</a></li>
                 <li><a href="#faq">FAQs</a></li>
@@ -1120,7 +1316,7 @@
         <div id="calculator">
             <div class="calculator">
                 <div class="input-section">
-                    <h2 class="section-title">Character Details</h2>
+                    <h2 class="section-title medieval-font">Character Details</h2>
                     
                     <div class="form-group">
                         <label for="characterClass">Class:</label>
@@ -1174,16 +1370,16 @@
                         <input type="number" id="fixedHP" min="1" placeholder="Leave empty for default">
                     </div>
                     
-                    <button id="calculateBtn">Calculate HP</button>
-                    <button id="rollBtn" class="roll-button">Roll Hit Points</button>
+                    <button id="calculateBtn" class="medieval-font">Calculate HP</button>
+                    <button id="rollBtn" class="roll-button medieval-font">Roll Hit Points</button>
                 </div>
                 
                 <div class="result-section">
-                    <h2 class="section-title">Hit Points</h2>
+                    <h2 class="section-title medieval-font">Hit Points</h2>
                     <div class="hp-display" id="totalHP">-</div>
                     
                     <div class="details">
-                        <h3>Calculation Details</h3>
+                        <h3 class="medieval-font">Calculation Details</h3>
                         <div class="hit-points-breakdown" id="breakdown">
                             <p>Select a class and level to see the breakdown</p>
                         </div>
@@ -1214,14 +1410,14 @@
         </div>
         
         <div id="content" class="content-section">
-            <h2>The Evolution of HP Calculators: From Classic Devices to Modern D&D Tools</h2>
+            <h2 class="medieval-font">The Evolution of HP Calculators: From Classic Devices to Modern D&D Tools</h2>
             <p>When we think about <strong>HP calculators</strong>, many remember the classic devices from the 1970s and 80s that revolutionized computation. The <strong>HP calculator's history</strong> is rich with innovation, from the iconic <strong>HP 65 calculator</strong> to the sophisticated <strong>HP 71B calculator</strong> that professionals cherished. These devices weren't just tools; they were marvels of engineering that combined precision with functionality.</p>
             
             <p>Today, the concept of a calculator has evolved dramatically. While some still seek <strong>HP calculator manuals</strong> for vintage models or visit the <strong>HP calculator museum</strong> online, modern users have different needs. Gamers might search for an <strong>HP XP calculator OSRS</strong> for Old School RuneScape, while automotive enthusiasts might need a <strong>nitrous jet HP calculator</strong> or a specialized <strong>HP calculator from torque</strong> measurements. The diversity of calculator applications is truly remarkable.</p>
             
             <p>In the realm of tabletop gaming, our <strong>HP calculator 5e</strong> serves a very specific purpose—helping Dungeons & Dragons players accurately determine their characters' hit points. Unlike a standard <strong>HP calculator</strong> that might compute horsepower or a <strong>joules to HP calculator</strong> for energy conversions, our tool focuses on the fantasy RPG experience. It's designed to eliminate the guesswork from character creation, much like how an <strong>EHP calculator</strong> helps Warframe players or an <strong>HDHP calculator</strong> assists with health plan decisions.</p>
             
-            <h3>Why Specialized Calculators Matter</h3>
+            <h3 class="medieval-font">Why Specialized Calculators Matter</h3>
             <p>People often wonder <strong>why calculator</strong> tools need to be specialized for different contexts. The answer is precision. A general-purpose calculator can't effectively handle the specific rules of D&D 5e any more than it could properly calculate a car's performance using an <strong>HP calculator 1/8 mile</strong> formula or determine battery life with an <strong>HP calculator batterie</strong> tool. Specialization allows for more accurate results tailored to specific needs.</p>
             
             <p>This is particularly important in 2024, as both technology and gaming continue to evolve. Our <strong>HP calculator 2024</strong> edition reflects the latest understanding of D&D mechanics, just as the <strong>HP calculator 2024 DND</strong> community standards have developed over time. While some may encounter issues like "<strong>why calculator is not opening in Windows 11</strong>" with older software, our web-based tool works seamlessly across all modern platforms.</p>
@@ -1240,7 +1436,7 @@
         </div>
         
         <!-- Sidebar Ad (positioned with CSS for larger screens) -->
-        <div class="ad-container" style="float: right; width: 300px; margin: 0 0 20px 20px; display: none;" id="sidebarAd">
+        <div class="ad-container" id="sidebarAd">
             <span class="ad-label">Advertisement</span>
             <div class="ad-unit vertical">
                 <!-- AdSense Ad Unit - Replace with your ad code -->
@@ -1257,7 +1453,7 @@
         </div>
         
         <div id="blog" class="content-section">
-            <h2>D&D 5e Blog & Guides</h2>
+            <h2 class="medieval-font">D&D 5e Blog & Guides</h2>
             <p>Explore our collection of articles and guides to enhance your D&D 5e experience. From character creation tips to advanced optimization strategies, we've got you covered.</p>
             
             <div class="blog-posts">
@@ -1308,7 +1504,7 @@
         
         <!-- FAQ Section -->
         <div id="faq" class="content-section">
-            <h2>Frequently Asked Questions</h2>
+            <h2 class="medieval-font">Frequently Asked Questions</h2>
             <p>Find answers to common questions about D&D 5e hit points, our calculator, and character optimization.</p>
             
             <div class="faq-container">
@@ -1406,7 +1602,7 @@
 
         <!-- User Reviews Section -->
         <div id="reviews" class="content-section">
-            <h2>What Players Say About Our HP Calculator</h2>
+            <h2 class="medieval-font">What Players Say About Our HP Calculator</h2>
             <p>Don't just take our word for it - here's what the D&D community has to say about our hit point calculator!</p>
             
             <div class="reviews-container" id="reviewsList">
@@ -1480,7 +1676,7 @@
             <div class="add-review">
                 <h3>Share Your Experience</h3>
                 <p>Have you used our HP calculator? We'd love to hear your feedback!</p>
-                <button id="reviewButton" class="submit-btn">Write a Review</button>
+                <button id="reviewButton" class="submit-btn medieval-font">Write a Review</button>
             </div>
         </div>
 
@@ -1488,7 +1684,7 @@
         <div class="modal" id="reviewModal">
             <div class="modal-content">
                 <button class="close-modal" id="closeModal">&times;</button>
-                <h2>Write a Review</h2>
+                <h2 class="medieval-font">Write a Review</h2>
                 <p>Share your experience with our HP Calculator to help us improve and assist other D&D players!</p>
                 
                 <form class="review-form" id="reviewForm">
@@ -1527,7 +1723,7 @@
                         <div class="char-count"><span id="charCount">0</span>/500 characters</div>
                     </div>
                     
-                    <button type="submit" class="submit-btn">Submit Review</button>
+                    <button type="submit" class="submit-btn medieval-font">Submit Review</button>
                 </form>
                 
                 <div class="form-submit-message success" id="successMessage">
@@ -1542,12 +1738,12 @@
         
         <!-- Privacy Policy Section -->
         <div id="privacy" class="content-section legal-content">
-            <h2>Privacy Policy</h2>
+            <h2 class="medieval-font">Privacy Policy</h2>
             <p class="last-updated">Last Updated: January 2025</p>
             
             <p>At Fantasy HP Calculator, we take your privacy seriously. This Privacy Policy describes how we collect, use, and protect your personal information when you use our website.</p>
             
-            <h3>Information We Collect</h3>
+            <h3 class="medieval-font">Information We Collect</h3>
             <p>We may collect the following types of information:</p>
             <ul>
                 <li><strong>Personal Information:</strong> When you contact us, we may collect your name and email address.</li>
@@ -1555,7 +1751,7 @@
                 <li><strong>Cookies:</strong> We use cookies to enhance your experience and analyze site traffic.</li>
             </ul>
             
-            <h3>How We Use Your Information</h3>
+            <h3 class="medieval-font">How We Use Your Information</h3>
             <p>We use the information we collect for the following purposes:</p>
             <ul>
                 <li>To provide and maintain our services</li>
@@ -1564,57 +1760,57 @@
                 <li>To analyze trends and gather demographic information</li>
             </ul>
             
-            <h3>Third-Party Services</h3>
+            <h3 class="medieval-font">Third-Party Services</h3>
             <p>We use third-party services such as Google AdSense to display advertisements and Google Analytics to analyze website traffic. These services may collect information about your use of our website.</p>
             
-            <h3>Data Security</h3>
+            <h3 class="medieval-font">Data Security</h3>
             <p>We implement appropriate security measures to protect your personal information. However, no method of transmission over the Internet is 100% secure.</p>
             
-            <h3>Your Rights</h3>
+            <h3 class="medieval-font">Your Rights</h3>
             <p>You have the right to access, correct, or delete your personal information. You can also opt-out of cookies through your browser settings.</p>
             
-            <h3>Changes to This Policy</h3>
+            <h3 class="medieval-font">Changes to This Policy</h3>
             <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page.</p>
             
-            <h3>Contact Us</h3>
+            <h3 class="medieval-font">Contact Us</h3>
             <p>If you have any questions about this Privacy Policy, please contact us through our <a href="#contact">contact form</a>.</p>
         </div>
         
         <!-- Terms & Conditions Section -->
         <div id="terms" class="content-section legal-content">
-            <h2>Terms & Conditions</h2>
+            <h2 class="medieval-font">Terms & Conditions</h2>
             <p class="last-updated">Last Updated: January 2025</p>
             
             <p>Welcome to Fantasy HP Calculator. By accessing and using our website, you accept and agree to be bound by these Terms and Conditions.</p>
             
-            <h3>Intellectual Property</h3>
+            <h3 class="medieval-font">Intellectual Property</h3>
             <p>All content on this website, including text, graphics, logos, and software, is the property of Fantasy HP Calculator or its content suppliers and is protected by copyright laws.</p>
             
-            <h3>Use License</h3>
+            <h3 class="medieval-font">Use License</h3>
             <p>We grant you permission to temporarily use our website for personal, non-commercial purposes. This is a license, not a transfer of title.</p>
             
-            <h3>Disclaimer</h3>
+            <h3 class="medieval-font">Disclaimer</h3>
             <p>Our website and all content are provided "as is." We make no warranties regarding the accuracy or completeness of any content.</p>
             
-            <h3>Limitations of Liability</h3>
+            <h3 class="medieval-font">Limitations of Liability</h3>
             <p>Fantasy HP Calculator shall not be held liable for any damages arising from the use or inability to use our website.</p>
             
-            <h3>Accuracy of Materials</h3>
+            <h3 class="medieval-font">Accuracy of Materials</h3>
             <p>The materials appearing on our website could include technical, typographical, or photographic errors. We do not warrant that any materials are accurate, complete, or current.</p>
             
-            <h3>Links to Other Websites</h3>
+            <h3 class="medieval-font">Links to Other Websites</h3>
             <p>Our website may contain links to third-party websites. We are not responsible for the content or privacy practices of these websites.</p>
             
-            <h3>Modifications</h3>
+            <h3 class="medieval-font">Modifications</h3>
             <p>We may revise these Terms and Conditions at any time without notice. By using this website, you agree to be bound by the current version of these Terms and Conditions.</p>
             
-            <h3>Governing Law</h3>
+            <h3 class="medieval-font">Governing Law</h3>
             <p>These terms and conditions are governed by and construed in accordance with the laws of the United States.</p>
         </div>
         
         <!-- Contact Us Section -->
         <div id="contact" class="content-section">
-            <h2>Contact Us</h2>
+            <h2 class="medieval-font">Contact Us</h2>
             <p>Have questions, suggestions, or need support? We'd love to hear from you! Fill out the form below or use our contact information to get in touch.</p>
             
             <form class="contact-form" id="contactForm">
@@ -1640,7 +1836,7 @@
                     <textarea id="message" name="message" required></textarea>
                 </div>
                 
-                <button type="submit" class="submit-btn">Send Message</button>
+                <button type="submit" class="submit-btn medieval-font">Send Message</button>
             </form>
             
             <div class="contact-info">
@@ -1673,7 +1869,7 @@
         
         <!-- SEO Backlinks Section -->
         <div class="seo-backlinks">
-            <h2>D&D Resources & Tools</h2>
+            <h2 class="medieval-font">D&D Resources & Tools</h2>
             <p>Explore these valuable Dungeons & Dragons resources to enhance your tabletop RPG experience:</p>
             
             <div class="backlinks-grid">
@@ -1753,27 +1949,27 @@
         
         <!-- Additional SEO content with natural backlinks -->
         <div class="content-section">
-            <h2>Expanding Your D&D Experience</h2>
+            <h2 class="medieval-font">Expanding Your D&D Experience</h2>
             <p>While our HP calculator helps you determine your character's survivability, there are many other aspects to creating an engaging D&D experience. For comprehensive character creation, consider using <a href="https://www.dndbeyond.com/characters" target="_blank" rel="noopener">D&D Beyond's character builder</a>, which offers digital character sheets with automatic calculations.</p>
             
             <p>If you're a Dungeon Master looking for inspiration, the <a href="https://www.dmsguild.com" target="_blank" rel="noopener">DMs Guild</a> offers thousands of adventures, supplements, and resources created by the D&D community. For rules references during your games, the <a href="https://www.5esrd.com" target="_blank" rel="noopener">5e System Reference Document</a> provides a complete database of spells, monsters, and game mechanics.</p>
             
             <p>For those playing online, virtual tabletops like <a href="https://roll20.net" target="_blank" rel="noopener">Roll20</a> provide digital battlemaps, character sheets, and integrated dice rolling. If you're looking to connect with other players, the <a href="https://www.reddit.com/r/DnD" target="_blank" rel="noopener">D&D Subreddit</a> has an active community of over 2 million members sharing stories, art, and advice.</p>
             
-            <h3>Enhancing Gameplay with Additional Resources</h3>
+            <h3 class="medieval-font">Enhancing Gameplay with Additional Resources</h3>
             <p>Beyond character stats, the visual elements of D&D can greatly enhance your game. Resources like <a href="https://www.printableheroes.com" target="_blank" rel="noopener">Printable Heroes</a> offer free paper miniatures that bring your characters and monsters to life. For worldbuilding inspiration, the <a href="https://forgottenrealms.fandom.com" target="_blank" rel="noopener">Forgotten Realms Wiki</a> contains extensive lore about D&D's most popular setting.</p>
             
             <p>If you're interested in optimizing your character builds, <a href="https://rpgbot.net/dnd5/characters/" target="_blank" rel="noopener">RPGbot's D&D 5e section</a> offers detailed handbooks for each class, helping you make the most of your character's abilities. For homebrew content and custom rules, the <a href="https://www.reddit.com/r/UnearthedArcana" target="_blank" rel="noopener">Unearthed Arcana subreddit</a> showcases community-created subclasses, spells, and game mechanics.</p>
         </div>
         
         <div id="about" class="content-section">
-            <h2>About Fantasy HP Calculator</h2>
+            <h2 class="medieval-font">About Fantasy HP Calculator</h2>
             <p>Welcome to Fantasy HP Calculator, your trusted resource for Dungeons & Dragons 5th Edition character tools. Our mission is to help players create and manage their D&D characters with easy-to-use calculators and comprehensive guides.</p>
             
-            <h3>Our Story</h3>
+            <h3 class="medieval-font">Our Story</h3>
             <p>Founded by a group of passionate D&D players and game masters, Fantasy HP Calculator emerged from our frustration with complicated character creation processes. We wanted to create tools that would simplify the mathematical aspects of D&D while maintaining the richness of the game's mechanics.</p>
             
-            <h3>Our Values</h3>
+            <h3 class="medieval-font">Our Values</h3>
             <ul>
                 <li><strong>Accuracy:</strong> Our calculators are built on the official D&D 5e ruleset</li>
                 <li><strong>Accessibility:</strong> We strive to make our tools easy to use for both new and experienced players</li>
@@ -1781,7 +1977,7 @@
                 <li><strong>Respect for IP:</strong> We follow Wizards of the Coast's Fan Content Policy</li>
             </ul>
             
-            <h3>Disclaimer</h3>
+            <h3 class="medieval-font">Disclaimer</h3>
             <p>Fantasy HP Calculator is not affiliated with, endorsed, sponsored, or specifically approved by Wizards of the Coast LLC. This website may use the trademarks and other intellectual property of Wizards of the Coast LLC, which is permitted under the Fan Content Policy.</p>
         </div>
         
@@ -1822,8 +2018,8 @@
     <div class="cookie-consent" id="cookieConsent">
         <p>We use cookies to enhance your experience and analyze site traffic. By clicking "Accept", you consent to our use of cookies.</p>
         <div class="cookie-buttons">
-            <button id="acceptCookies" class="submit-btn">Accept</button>
-            <button id="rejectCookies" class="roll-button">Reject</button>
+            <button id="acceptCookies" class="submit-btn medieval-font">Accept</button>
+            <button id="rejectCookies" class="roll-button medieval-font">Reject</button>
         </div>
     </div>
 
@@ -1841,10 +2037,28 @@
             const breakdownDiv = document.getElementById('breakdown');
             const hitDiceDiv = document.getElementById('hitDice');
             
+            // Mobile navigation elements
+            const navToggle = document.getElementById('navToggle');
+            const navMenu = document.getElementById('navMenu');
+            
             // Cookie consent elements
             const cookieConsent = document.getElementById('cookieConsent');
             const acceptCookies = document.getElementById('acceptCookies');
             const rejectCookies = document.getElementById('rejectCookies');
+            
+            // Mobile navigation toggle
+            navToggle.addEventListener('click', function() {
+                this.classList.toggle('open');
+                navMenu.classList.toggle('open');
+            });
+            
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.addEventListener('click', function() {
+                    navToggle.classList.remove('open');
+                    navMenu.classList.remove('open');
+                });
+            });
             
             // Show cookie consent if not already accepted
             if (!localStorage.getItem('cookiesAccepted')) {
@@ -2021,7 +2235,7 @@
                     stars.forEach(s => {
                         const starValue = parseInt(s.getAttribute('data-value'));
                         if (starValue <= value) {
-                            s.style.transform = 'scale(1.2)';
+                            s.style.transform = 'scale(1.1)';
                         }
                     });
                 });
